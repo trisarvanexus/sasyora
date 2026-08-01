@@ -1,0 +1,6 @@
+# macOS
+.DS_Store
+
+# Local screenshot / diagnostic scratch
+.shots/
+_diag.html
