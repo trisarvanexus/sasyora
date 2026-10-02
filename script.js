@@ -102,7 +102,7 @@
      ---------------------------------------------------------- */
 
   const revealTargets = document.querySelectorAll(
-    '.section-head, .card, .produce-solo, .soft-note, .split-copy, .split-figure, .journey li, .table-scroll, .faq-item, .hero-seal'
+    '.section-head, .card, .produce-solo, .soft-note, .split-copy, .split-figure, .journey li, .table-scroll, .faq-item'
   );
 
   if (reduceMotion || !('IntersectionObserver' in window)) {

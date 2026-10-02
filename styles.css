@@ -208,6 +208,7 @@ strong { color: var(--green-800); font-weight: 600; }
 .eyebrow {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: .55rem;
   font-family: var(--font-body);
   font-size: var(--step--1);
@@ -216,6 +217,10 @@ strong { color: var(--green-800); font-weight: 600; }
   text-transform: uppercase;
   color: var(--green-600);
 }
+
+/* Hidden on the narrowest screens, where the eyebrow wraps onto two lines and a
+   trailing bullet would dangle. */
+.eyebrow-sep { display: none; color: var(--honey); }
 
 .center .eyebrow { justify-content: center; }
 
@@ -331,21 +336,10 @@ strong { color: var(--green-800); font-weight: 600; }
 }
 
 .brand {
-  display: inline-flex;
-  align-items: center;
-  gap: .7rem;
+  display: inline-block;
   text-decoration: none;
   color: inherit;
 }
-
-.brand-emblem {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  transition: transform var(--t);
-}
-
-.brand:hover .brand-emblem { transform: rotate(-6deg) scale(1.06); }
 
 .brand-words { display: grid; }
 
@@ -357,7 +351,10 @@ strong { color: var(--green-800); font-weight: 600; }
   letter-spacing: .04em;
   color: var(--green-700);
   text-transform: uppercase;
+  transition: color var(--t);
 }
+
+.brand:hover .brand-name { color: var(--green-900); }
 
 .brand-tagline {
   font-size: .625rem;
@@ -486,8 +483,14 @@ strong { color: var(--green-800); font-weight: 600; }
 
 .hero-inner {
   display: grid;
-  gap: clamp(2rem, 6vw, 3.5rem);
-  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.hero-copy {
+  display: grid;
+  justify-items: center;
+  max-width: 62ch;
 }
 
 .hero-copy h1 { margin-top: .6rem; }
@@ -513,6 +516,7 @@ strong { color: var(--green-800); font-weight: 600; }
 .lede {
   max-width: 54ch;
   margin-top: 1.25rem;
+  margin-inline: auto;
   font-size: var(--step-1);
   color: var(--muted);
 }
@@ -520,6 +524,7 @@ strong { color: var(--green-800); font-weight: 600; }
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: .75rem;
   margin-top: 1.9rem;
 }
@@ -527,6 +532,7 @@ strong { color: var(--green-800); font-weight: 600; }
 .hero-chips {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: .5rem;
   margin-top: 1.9rem;
 }
@@ -539,34 +545,6 @@ strong { color: var(--green-800); font-weight: 600; }
   font-size: var(--step--1);
   font-weight: 500;
   color: var(--green-700);
-}
-
-.hero-seal { display: grid; justify-items: center; gap: 1rem; }
-
-.seal {
-  display: grid;
-  place-items: center;
-  width: min(78vw, 400px);
-  aspect-ratio: 1;
-  padding: clamp(1.5rem, 5vw, 2.5rem);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 46%, var(--white) 0%, var(--white) 58%, rgba(255, 255, 255, .55) 100%);
-  box-shadow:
-    0 0 0 1px rgba(47, 93, 47, .12),
-    0 0 0 12px rgba(255, 255, 255, .45),
-    0 0 0 13px rgba(47, 93, 47, .1),
-    var(--shadow-lg);
-}
-
-.seal img { width: 100%; height: auto; }
-
-.seal-note {
-  font-size: var(--step--1);
-  font-weight: 600;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--green-600);
 }
 
 /* ----------------------------------------------------------
@@ -1006,21 +984,11 @@ strong { color: var(--green-800); font-weight: 600; }
   justify-items: center;
 }
 
-.footer-seal {
-  display: grid;
-  place-items: center;
-  width: 76px; height: 76px;
-  padding: 10px;
-  border-radius: 50%;
-  background: var(--paper);
-  box-shadow: 0 0 0 6px rgba(251, 248, 241, .12);
-}
-
 .footer-lockup {
-  margin-top: 1rem;
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
+  line-height: 1.2;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--white);
@@ -1122,21 +1090,18 @@ strong { color: var(--green-800); font-weight: 600; }
 @media (min-width: 36em) {
   .footer-inner { gap: 2.5rem; }
   .hero-chips li { font-size: var(--step-0); }
+  .eyebrow-sep { display: inline; }
 }
 
 @media (min-width: 48em) {
   :root { --header-h: 76px; }
 
-  .brand-emblem { width: 48px; height: 48px; }
   .brand-name { font-size: 1.45rem; }
   .brand-tagline { font-size: .6875rem; }
 
   .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .journey { grid-template-columns: repeat(2, 1fr); }
   .produce-solo { grid-template-columns: minmax(180px, .5fr) 1fr; align-items: stretch; }
-
-  .hero-inner { grid-template-columns: 1.05fr .95fr; }
-  .seal { width: min(42vw, 420px); }
 
   .split { grid-template-columns: 1fr 1fr; }
   .split-reverse .product-figure { order: 2; }
@@ -1213,10 +1178,6 @@ strong { color: var(--green-800); font-weight: 600; }
   .footer-nav { justify-self: end; }
   .footer-nav ul { justify-content: flex-end; }
   .footer-legal { grid-column: 1 / -1; text-align: center; }
-}
-
-@media (min-width: 80em) {
-  .seal { width: 440px; }
 }
 
 /* ----------------------------------------------------------
