@@ -26,7 +26,10 @@ Pushing to the default branch (`main`) publishes it.
   background). **Source of truth, not referenced by the page.** All web logo assets
   are derived from it.
 - `logo-lockup.{png,webp}` — full lockup, transparent, centred on its optical axis.
-- `logo-emblem.{png,webp}` — the wreath emblem alone, square.
+  Not displayed on the page; kept because it is the `og:image` and the JSON-LD `logo`.
+- `logo-emblem.{png,webp}` — the wreath emblem alone, square. **Currently unreferenced**:
+  the emblem was removed from the header and footer, so the only logo imagery the
+  browser loads is the favicon.
 - `favicon.png`, `favicon-32.png` — derived from the emblem.
 - `elaneerbottle.jpeg` / `.webp` — the **packaging specification sheet** (front/back
   bottle renders plus PANTONE, CMYK, print specs, barcode, supplier names). Internal
@@ -56,6 +59,11 @@ Pushing to the default branch (`main`) publishes it.
 No stock photography. Everything is either the brand's own asset or original artwork:
 inline SVG (the Pollachi coconut grove scene, the icon sprite, the hero hills) and CSS
 gradients. If a new visual is needed, draw it as SVG rather than sourcing a photo.
+
+The only raster image on the page is the Elaneer bottle. Both the header and the footer
+render the brand as **text** (`Sasyora` in Playfair Display plus the tagline), and the
+hero is purely typographic over the hills illustration — there is deliberately no logo
+image anywhere in the layout.
 
 ## CSS conventions
 
