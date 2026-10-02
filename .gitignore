@@ -4,3 +4,7 @@
 # Local screenshot / diagnostic scratch
 .shots/
 _diag.html
+
+# Internal source material: the logo master and the packaging spec sheet.
+# Deliberately untracked so sasyora.com never serves them.
+/private/
