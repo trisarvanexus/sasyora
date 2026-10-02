@@ -18,24 +18,53 @@ Pushing to the default branch (`main`) publishes it.
 
 ## Files
 
+```
+index.html              markup; must stay at the repo root
+CNAME                   custom domain; must stay at the repo root
+src/styles.css
+src/script.js
+assets/brand/           logo derivatives and favicons
+assets/product/         the bottle render
+private/                gitignored, local only
+```
+
+`index.html` and `CNAME` are **pinned to the root** by the Pages configuration: the
+site is published with the legacy branch builder from `main` at path `/`, and branch
+publishing accepts only `/` or `/docs`, never `/src`. Everything else is referenced
+relative to the root, so paths in `index.html` carry the `src/` or `assets/` prefix.
+
 - `index.html` — all markup, including an inline `<svg>` sprite of hand-authored
   `<symbol>` icons (ids prefixed `i-`) and one larger inline illustration.
-- `styles.css` — all styling, mobile-first, organised into numbered comment sections.
-- `script.js` — all behaviour, wrapped in an IIFE.
-- `logo.png` — the original brand lockup as supplied (2816x1536, ~4 MB, white
-  background). **Source of truth, not referenced by the page.** All web logo assets
-  are derived from it.
-- `logo-lockup.{png,webp}` — full lockup, transparent, centred on its optical axis.
-  Not displayed on the page; kept because it is the `og:image` and the JSON-LD `logo`.
-- `logo-emblem.{png,webp}` — the wreath emblem alone, square. **Currently unreferenced**:
-  the emblem was removed from the header and footer, so the only logo imagery the
-  browser loads is the favicon.
-- `favicon.png`, `favicon-32.png` — derived from the emblem.
-- `elaneerbottle.jpeg` / `.webp` — the **packaging specification sheet** (front/back
-  bottle renders plus PANTONE, CMYK, print specs, barcode, supplier names). Internal
-  reference; **not shown on the site.**
-- `elaneer-bottle.{png,webp}` — the front bottle cropped out of that sheet. This is
-  the product image the page uses.
+- `src/styles.css` — all styling, mobile-first, organised into numbered comment
+  sections. It references no external files; its one `url()` is an inline data-URI
+  checkmark, which is why the stylesheet could move into a subdirectory untouched.
+- `src/script.js` — all behaviour, wrapped in an IIFE.
+- `assets/brand/logo-lockup.{png,webp}` — full lockup, transparent, centred on its
+  optical axis. Not displayed on the page; kept because the `.png` is the `og:image`
+  and the JSON-LD `logo`, both as absolute `https://sasyora.com/assets/brand/...` URLs.
+  Moving this file means editing those two absolute URLs too.
+- `assets/brand/logo-emblem.{png,webp}` — the wreath emblem alone, square.
+  **Currently unreferenced**: the emblem was removed from the header and footer, so
+  the only logo imagery the browser loads is the favicon.
+- `assets/brand/logo-silhouette.svg` — a 42-path monochrome trace of the lockup, all
+  `#000000`. **Currently unreferenced**; a candidate for a single-colour mark.
+- `assets/brand/favicon.png`, `favicon-32.png` — derived from the emblem.
+- `assets/product/elaneer-bottle.{png,webp}` — the front bottle cropped out of the
+  packaging spec sheet. The only raster image the page displays.
+
+### Untracked internal source material
+
+`private/` is in `.gitignore` so that nothing in it is published from `sasyora.com`.
+It is **not backed up by this repo** — these files exist only on a local machine.
+
+- `private/logo.png` — the original brand lockup as supplied (2816x1536, ~4 MB,
+  white background). **Source of truth** for every asset in `assets/brand/`.
+- `private/elaneerbottle.jpeg` / `.webp` — the **packaging specification sheet**
+  (front/back bottle renders plus PANTONE, CMYK, print specs, barcode, supplier
+  names). Internal reference; never to be shown on the site.
+
+Both were tracked at the repo root until the restructure, so they remain reachable in
+older commits. Purging them from history needs a rewrite and a force push.
 
 ## Brand rules
 
