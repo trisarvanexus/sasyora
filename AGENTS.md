@@ -73,8 +73,10 @@ older commits. Purging them from history needs a rewrite and a force push.
   and the footer legal line. Bare "Sasyora" in prose takes no `™`, and **"Elaneer"
   never takes `™`**.
 - **Elaneer** is the Kannada word for tender coconut. Do not describe it as Tamil.
-- Positioning is Karnataka-first: Tumakuru, Tiptur, Hassan and Mandya are the sourcing
-  districts. Pollachi (Tamil Nadu) is referenced only as a quality benchmark.
+- Positioning is south Indian coconut heritage, not a repeated state slogan. Name
+  Tumakuru, Tiptur, Hassan, Mandya and Pollachi as the coconut country. "Karnataka"
+  appears only in the JSON-LD `addressRegion` and the FAQ sourcing answer. Pollachi
+  stays a quality benchmark, not a separate tab.
 - Only tender coconut water exists as a product. The emblem also depicts honey, coffee
   berries and cacao, but those are **not** offered — the single line "More organic
   produce from the same farms will follow" is the only forward-looking claim. Do not
@@ -86,7 +88,7 @@ older commits. Purging them from history needs a rewrite and a force push.
 ## Imagery
 
 No stock photography. Everything is either the brand's own asset or original artwork:
-inline SVG (the Pollachi coconut grove scene, the icon sprite, the hero hills) and CSS
+inline SVG (the coconut-grove scene, the icon sprite, the hero hills) and CSS
 gradients. If a new visual is needed, draw it as SVG rather than sourcing a photo.
 
 The only raster image on the page is the Elaneer bottle. Both the header and the footer
